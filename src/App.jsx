@@ -1,23 +1,15 @@
-import { useState, useEffect } from 'react';
-import * as API from "./services/launches";
+import { Routes, Route, Link} from 'react-router-dom';
+import { LaunchList } from './components/LaunchList';
+import { LaunchDetail} from './components/LaunchDetail';
+
 
 export function App() {
-  const [launches, setLaunches] = useState([]);
-
-  useEffect(() => {
-    API.getAllLaunches().then(setLaunches);
-  }, []);
-
   return (
     <>
-      <h1>SpaceX Launches</h1>
-      <ul>
-        {launches.map((launch) => (
-          <li key={launch.mission_name}>
-            {launch.mission_name} - {launch.rocket.second_stage.payloads[0].nationality}
-          </li>
-        ))}
-      </ul>
+      <Routes>
+        <Route path="/" element={<LaunchList />} />
+        <Route path="launch/:id" element={<LaunchDetail />} />
+      </Routes>
     </>
   );
 }
