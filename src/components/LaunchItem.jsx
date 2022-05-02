@@ -1,4 +1,5 @@
-import { Box, Flex, Text, Spacer, Tag} from '@chakra-ui/react'
+import { Box, Button, Flex, Text, Spacer, Tag} from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
  
 
 export function LaunchItem(launch) {
@@ -17,7 +18,10 @@ return (
         <Tag p={3} colorScheme={launch.launch_success ? "green" : "red"}>
         {launch.launch_success ? "Success" : "Failure"}
         </Tag>
-    </Flex>          
+    </Flex>
+    <Link to={`/launch/${launch.flight_number}`}>
+        < Button mt={2} colorScheme="purple">More Details</Button>
+    </Link>
 </Box>
 )
 }
